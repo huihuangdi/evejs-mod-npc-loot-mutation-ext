@@ -1,0 +1,44 @@
+{
+  "author": {
+    "id": "au-mul9t76ozxf9",
+    "keyId": "050c08195199",
+    "name": "辉煌帝"
+  },
+  "category": "玩法",
+  "changelog": "第一次发布",
+  "conflicts": [],
+  "delisted": false,
+  "description": "把 NPC 掉落的炮台/导弹发射器/抗性装备突变为 102 个深渊产物（含 6 个突变催化器）；属性范围由 data/ranges.json 可调，客户端数据需先用 tools/client-sync.js 部署。",
+  "displayName": "NPC掉落突变扩展",
+  "downloadUrls": [
+    {
+      "mirror": "github",
+      "priority": 1,
+      "url": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext/releases/download/v0.2.0/npc-loot-mutation-ext-0.2.0.zip"
+    }
+  ],
+  "evejsVersions": [
+    "261028.x"
+  ],
+  "featured": false,
+  "highlights": [
+    "依赖：`npc-loot-mutation >= 0.3.0`（惰性索引；0.3.0 由本模组发布时一并升级）",
+    "重启类型：游戏服务器（`restart: game_server`）",
+    "新增类型：**111 个** = 102 个产物（炮台 64 + 发射器 11 + 抗性 27）+ 9 个突变催化器",
+    "覆盖源类型：**1478 个**（炮台 637 + 发射器 144 + 抗性 697；含按属性指纹补全的 127 个新版命名 T1 变体）",
+    "typeID：`300000`–`300110`；本地化 messageID：`920000000`–`920000221`",
+    "新增描述：每个产物/催化器一条独立 descriptionID（不复用 T1 描述）"
+  ],
+  "history": [],
+  "id": "npc-loot-mutation-ext",
+  "publishedAt": "2026-11-08",
+  "readme": [
+    "把 NPC 掉落里的**炮台 / 导弹发射器 / 抗性装备**突变为深渊（Abyssal）产物。\n掉落逻辑与突变率由基础模组 [`npc-loot-mutation`](../npc-loot-mutation) 负责，本模组只做「扩展家族 + 客户端数据 + 导弹伤害」。"
+  ],
+  "repo": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext",
+  "requiresRestart": true,
+  "sha256": "a4d3dff81b60d4f8725753cef26683aba9f67283754d6643de3a97647b2af60c",
+  "sizeBytes": 1334771,
+  "tags": [],
+  "version": "0.2.0"
+}
