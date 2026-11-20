@@ -5,20 +5,20 @@
     "name": "辉煌帝"
   },
   "category": "玩法",
-  "changelog": "突变范围  腐朽  +-10%，怀璧 +-20%，不稳定 +-30%。",
+  "changelog": "",
   "conflicts": [],
   "delisted": false,
-  "description": "把 NPC 掉落的炮台/导弹发射器/抗性装备突变为 102 个深渊产物（含 6 个突变催化器）；属性范围由 data/ranges.json 可调，客户端数据需先用 tools/client-sync.js 部署。",
+  "description": "把 NPC 掉落的炮台/导弹发射器/抗性装备突变为 102 个深渊产物（含 6 个突变催化器）；客户端数据（含 typeMaterials 工业/精炼信息）由 tools/client-sync.js 部署；属性范围由 data/ranges.json 可调，并带本地网页编辑器（Start-Range-Editor.bat，百分比仅只读预览）；登录载荷把每门发射器的 213 补进客户端装配面板/HUD 的导弹伤害显示（0.3.4）。",
   "displayName": "NPC掉落突变扩展",
   "downloadUrls": [
     {
       "mirror": "github",
       "priority": 1,
-      "url": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext/releases/download/v0.3.1/npc-loot-mutation-ext-0.3.1.zip"
+      "url": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext/releases/download/v0.3.6/npc-loot-mutation-ext-0.3.6.zip"
     }
   ],
   "evejsVersions": [
-    "261108.x"
+    "261115.x"
   ],
   "featured": false,
   "highlights": [
@@ -32,14 +32,14 @@
   ],
   "history": [],
   "id": "npc-loot-mutation-ext",
-  "publishedAt": "2026-11-10",
+  "publishedAt": "2026-11-20",
   "readme": [
     "把 NPC 掉落里的**炮台 / 导弹发射器 / 抗性装备**突变为深渊（Abyssal）产物。\n掉落逻辑与突变率由基础模组 [`npc-loot-mutation`](../npc-loot-mutation) 负责，本模组只做「扩展家族 + 客户端数据 + 导弹伤害」。"
   ],
   "repo": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext",
   "requiresRestart": true,
-  "sha256": "5d0552fa34d698bc99e7365178a7af8c4264d98ca034f778e25cde7b5f28cf0c",
-  "sizeBytes": 1352158,
+  "sha256": "2019f2db6dd271ac3bf4b36f000e1d8f6408a641fc088ad6ca8ce861015b0760",
+  "sizeBytes": 1832148,
   "tags": [],
-  "version": "0.3.1"
+  "version": "0.3.6"
 }
