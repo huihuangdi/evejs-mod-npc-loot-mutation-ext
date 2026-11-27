@@ -5,41 +5,43 @@
     "name": "辉煌帝"
   },
   "category": "玩法",
-  "changelog": "用户配置迁移到MOD目录外",
+  "changelog": "",
   "conflicts": [],
   "delisted": false,
-  "description": "把 NPC 掉落的炮台/导弹发射器/抗性装备突变为 102 个深渊产物（含 6 个突变催化器）；客户端数据（含 typeMaterials 工业/精炼信息）由 tools/client-sync.js 部署；属性范围由 data/ranges.json 可调，并带本地网页编辑器（Start-Range-Editor.bat，百分比仅只读预览）；登录载荷把每门发射器的 213 补进客户端装配面板/HUD 的导弹伤害显示（0.3.4）。",
+  "description": "把 NPC 掉落的炮台/发射器/抗性装备按档位突变为 102 个深渊产物 + 9 个催化器（共 111 个新 typeID），带属性范围编辑器、工业/技能要求表与装配面板 213 显示；客户端静态表统一由 fsd-hub 发布。",
   "displayName": "NPC掉落突变扩展",
   "downloadUrls": [
     {
       "mirror": "github",
       "priority": 1,
-      "url": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext/releases/download/v0.4.1/npc-loot-mutation-ext-0.4.1.zip"
+      "url": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext/releases/download/v0.6.1/npc-loot-mutation-ext-0.6.1.zip"
     }
   ],
   "evejsVersions": [
-    "261115.x"
+    "261125.x"
   ],
   "featured": false,
   "highlights": [
-    "兼容服务端：**EveJS 261108.x**（基线文件为 261108.1；261028.x 时代的旧清单不再适用）",
-    "依赖：`npc-loot-mutation >= 0.4.0`（惰性索引；与本模组同批适配 261108.1）",
-    "重启类型：游戏服务器（`restart: game_server`）",
-    "新增类型：**111 个** = 102 个产物（炮台 64 + 发射器 11 + 抗性 27）+ 9 个突变催化器",
-    "覆盖源类型：**1478 个**（炮台 637 + 发射器 144 + 抗性 697；含按属性指纹补全的 127 个新版命名 T1 变体）",
-    "typeID：`300000`–`300110`；本地化 messageID：`920000000`–`920000221`",
-    "新增描述：每个产物/催化器一条独立 descriptionID（不复用 T1 描述）"
+    "**111 个新 typeID**：102 个突变产物（炮台 / 发射器 / 抗性 × 三档）+ 9 个突变催化器（每类三档）。",
+    "掉落时按 NPC 档位掷骰：属性倍率取自 `data/ranges.json`（可在编辑器里改），产物带 `customInfo.evejsDynamicItem` 凭据。",
+    "客户端识别：产物行带 `unknown148 |= 0x100` 动态物品掩码，`dynamicitemattributes` 注册 9 个 mutator。",
+    "信息窗口「工业 / 精炼」读 `typematerials`、「技能要求」读 `requiredskillsfortypes`，两者都随产物补齐。",
+    "装配面板 / HUD 的导弹伤害按每门发射器补 213（登录载荷，只改客户端显示，不写客户端文件）。",
+    "装配/模块状态变化后补推已装填弹药的有效属性（150ms 限频，`EVEJS_MUTATION_EXT_CHARGE_PUSH=off` 可关）。",
+    "自带范围编辑器（`Start-Range-Editor.bat`，`127.0.0.1:26103`），百分比只读预览、JSONC 注释逐字节保留。"
   ],
   "history": [],
   "id": "npc-loot-mutation-ext",
-  "publishedAt": "2026-11-21",
+  "publishedAt": "2026-11-27",
   "readme": [
-    "把 NPC 掉落里的**炮台 / 导弹发射器 / 抗性装备**突变为深渊（Abyssal）产物。\n掉落逻辑与突变率由基础模组 [`npc-loot-mutation`](../npc-loot-mutation) 负责，本模组只做「扩展家族 + 客户端数据 + 导弹伤害」。"
+    "`loader.js` 分两层：preload 阶段通过注入总线给 `referenceData.js`（合并层，slot 45）、\n`itemTypeRegistry.js`（缓存 reset 开关）、`weaponDogma.js`（导弹伤害 M3）等目标追加代码；\n业务层在 `setImmediate` 里 require `referenceData` 触发编译，注册 `itemTypes` / `typeDogma` /\n`dynamicItemAttributes` 三张表的 overlay，自检行数后重建 `itemTypeRegistry` 快照缓存。",
+    "产物会跨 6 个客户端静态表：`types`、`typedogma`、`requiredskillsfortypes`、`typematerials`、\n`dynamicitemattributes` 与中英文本地化。这些**不由本模组写**：`tools/fsd-spec.js` 把\n`data/**` 变成 fsd-hub 的 spec，由 hub 从 base 重放并一次发布。",
+    "服务端侧的就绪判定只看 `hub.isReady(\"npc-loot-mutation-ext\")`：没有发布成功就不注册 mutator\n（安全模式），避免服务端已经产出新 typeID 而客户端不认识导致 UI 崩。发布成功后 `onReady`\n会回调启用，无需重启服务端。"
   ],
   "repo": "https://github.com/huihuangdi/evejs-mod-npc-loot-mutation-ext",
   "requiresRestart": true,
-  "sha256": "5254bc32e1a3a86ead427e67d179813f3ad0fcff7766f1edef83fec24a9024ab",
-  "sizeBytes": 1988336,
+  "sha256": "185b5be0a11b830e669c4181b03cde5f4058ca6db4abed49a03a8a04f48525f9",
+  "sizeBytes": 1883204,
   "tags": [],
-  "version": "0.4.1"
+  "version": "0.6.1"
 }
